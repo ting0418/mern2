@@ -4,10 +4,19 @@ import { useAppSelector } from "@/app/lib/hooks";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 const Page = () => {
-  const userData = useAppSelector((state) => state.user.user);
+  const { isLoggedIn, id, username, email, date, role } = useAppSelector(
+    (state) => ({
+      isLoggedIn: state.user.isLoggedIn,
+      id: state.user.user.user._id,
+      username: state.user.user.user.username,
+      email: state.user.user.user.email,
+      role: state.user.user.user.role,
+      date: state.user.user.user.date,
+    })
+  );
   const Router = useRouter();
-  // 檢查用戶是否登錄
-  if (!userData) {
+
+  if (!isLoggedIn) {
     // 如果未登錄，顯示錯誤訊息
     Swal.fire({
       title: "錯誤",
@@ -19,7 +28,6 @@ const Page = () => {
     return null;
   }
 
-  const { _id, username, email, date, role } = userData;
   return (
     <>
       <h1 className="text-center mt-2">我的個人資料</h1>

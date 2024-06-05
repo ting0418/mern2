@@ -47,7 +47,7 @@ const CourseComponent = () => {
       if (role == "instructor") {
         Swal.fire({
           title: "錯誤",
-          text: "只有身分為講師才可以報名課程喔!",
+          text: "只有身分為學生才可以報名課程喔!",
           icon: "error",
         });
         return;
@@ -71,7 +71,7 @@ const CourseComponent = () => {
         }
         return course;
       });
-      console.log(updatedCourseData);
+      // console.log(updatedCourseData);
       // 更新 courseData 狀態
       setCourseData(updatedCourseData);
       Swal.fire({
@@ -79,11 +79,11 @@ const CourseComponent = () => {
         text: "您已報名成功!",
         icon: "success",
       });
-    } catch (error) {
-      console.error("Failed to join course:", error);
+    } catch (e) {
+      // console.error("Failed to join course:", e.response.data);
       Swal.fire({
         title: "錯誤",
-        text: "報名課程失敗，請稍後再試!",
+        text: e.response.data,
         icon: "error",
       });
     }
@@ -95,7 +95,7 @@ const CourseComponent = () => {
         // 從 Cookie 中獲取完整的 Cookie 字串
         const token = getCookie("token");
 
-        console.log("course46 token:" + token);
+        // console.log("course46 token:" + token);
         if (!token) {
           console.error("Token not found in cookie");
           return;
@@ -109,7 +109,7 @@ const CourseComponent = () => {
         });
         setCourseData(response.data);
 
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.error("Failed to fetch courses:", error);
       }
@@ -133,19 +133,10 @@ const CourseComponent = () => {
           </button>
         </div>
       )}
-      {/* {id && role == "instructor" && (
-        <div>
-          <h1>歡迎來到講師的課程頁面。</h1>
-        </div>
-      )}
-      {id && role == "student" && (
-        <div>
-          <h1>歡迎來到學生的課程頁面。</h1>
-        </div>
-      )} */}
+
       {id && (
-        <div className=" d-flex align-items-end ">
-          <h1 className="">課程頁面</h1>
+        <div className="container d-flex align-items-end justify-content-between">
+          <h1 className="flex-grow-1 text-center">課程頁面</h1>
           <p className="">總共有 {courseData ? courseData.length : 0}筆課程</p>
         </div>
       )}

@@ -89,11 +89,11 @@ const Nav = () => {
                       <p className="nav-link">新增課程</p>
                     </Link>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <Link href="/enroll" passHref>
                       <p className="nav-link">註冊課程</p>
                     </Link>
-                  </li>
+                  </li> */}
                   {isLoggedIn === false && (
                     <li className="nav-item">
                       <Link href="/login" passHref>

@@ -30,8 +30,9 @@ const Login = () => {
           },
         }
       );
-      console.log("登入成功:", response.data.user.username);
-      console.log(response.data);
+
+      // console.log("登入成功:", response.data.user.username);
+      // console.log(response.data);
       //  將使用者資訊傳給store
       dispatch(loginSuccess(response.data));
 
@@ -46,8 +47,8 @@ const Login = () => {
         router.push("/");
       });
     } catch (e) {
-      setMessage(e.message);
-      console.error("登入失敗:", e.message);
+      setMessage(e.response.data);
+      console.error("登入失敗:", e.response.data);
       // dispatch(loginFailure(e.response.data || "登入失敗，未提供授權！"));
     }
   };
