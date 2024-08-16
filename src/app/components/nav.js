@@ -1,9 +1,10 @@
+"use client";
 import Link from "next/link";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { useState } from "react";
 import { useAppSelector, useAppDispatch } from "@/app/lib/hooks";
-
+import { IoCartOutline } from "react-icons/io5";
 import { logout } from "../lib/features/userSlice";
 const Nav = () => {
   const dispatch = useAppDispatch();
@@ -89,11 +90,7 @@ const Nav = () => {
                       <p className="nav-link">新增課程</p>
                     </Link>
                   </li>
-                  {/* <li className="nav-item">
-                    <Link href="/enroll" passHref>
-                      <p className="nav-link">註冊課程</p>
-                    </Link>
-                  </li> */}
+
                   {isLoggedIn === false && (
                     <li className="nav-item">
                       <Link href="/login" passHref>
@@ -116,11 +113,20 @@ const Nav = () => {
                   )}
                 </ul>
               </div>
-              {username && (
+              <div className="d-flex">
                 <div>
-                  <p>{"您好！ " + username}</p>
+                  {username && (
+                    <div>
+                      <p>{"您好！ " + username}</p>
+                    </div>
+                  )}
                 </div>
-              )}
+                <div className="ms-2">
+                  <Link href="/cart">
+                    <IoCartOutline className="fs-2 text-dark" />
+                  </Link>
+                </div>
+              </div>
             </div>
           </nav>
         </nav>
