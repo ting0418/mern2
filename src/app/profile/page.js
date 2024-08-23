@@ -4,16 +4,19 @@ import { useAppSelector } from "@/app/lib/hooks";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 const Page = () => {
-  const { isLoggedIn, id, username, email, date, role } = useAppSelector(
-    (state) => ({
-      isLoggedIn: state.user.isLoggedIn,
-      id: state.user.user.user._id,
-      username: state.user.user.user.username,
-      email: state.user.user.user.email,
-      role: state.user.user.user.role,
-      date: state.user.user.user.date,
-    })
-  );
+  // const { isLoggedIn, id, username, email, date, role } = useAppSelector(
+  //   (state) => ({
+  //     isLoggedIn: state.user?.isLoggedIn,
+  //     id: state.user?.user?.user?._id,
+  //     username: state.user?.user?.user?.username,
+  //     email: state.user?.user?.user?.email,
+  //     role: state.user?.user?.user?.role,
+  //     date: state.user?.user?.user?.date,
+  //   })
+  // );
+  const { isLoggedIn, user } = useAppSelector((state) => state.user || {});
+  const { id, username, email, date, role } = user?.user || {};
+
   const Router = useRouter();
 
   if (!isLoggedIn) {

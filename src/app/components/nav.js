@@ -121,11 +121,13 @@ const Nav = () => {
                     </div>
                   )}
                 </div>
-                <div className="ms-2">
-                  <Link href="/cart">
-                    <IoCartOutline className="fs-2 text-dark" />
-                  </Link>
-                </div>
+                {isLoggedIn === true && (
+                  <div className="ms-2">
+                    <Link href="/cart">
+                      <IoCartOutline className="fs-2 text-dark" />
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </nav>

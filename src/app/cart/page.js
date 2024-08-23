@@ -61,7 +61,7 @@ const CartPage = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1 className="text-center">購物車</h1>
       <ul>
         {cart.map((course, index) => (

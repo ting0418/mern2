@@ -5,16 +5,20 @@ import Swal from "sweetalert2";
 import { useAppSelector, useAppDispatch } from "@/app/lib/hooks";
 import axios from "axios";
 export default function Page() {
-  const { isLoggedIn, id, username, email, date, role } = useAppSelector(
-    (state) => ({
-      isLoggedIn: state.user.isLoggedIn,
-      id: state.user.user.user._id,
-      username: state.user.user.user.username,
-      email: state.user.user.user.email,
-      role: state.user.user.user.role,
-      date: state.user.user.user.date,
-    })
-  );
+  const { isLoggedIn, user } = useAppSelector((state) => state.user || {});
+
+  const { id } = user || {};
+
+  // const { isLoggedIn, id, username, email, date, role } = useAppSelector(
+  //   (state) => ({
+  //     isLoggedIn: state.user.isLoggedIn,
+  //     id: state.user.user.user._id,
+  //     username: state.user.user.user.username,
+  //     email: state.user.user.user.email,
+  //     role: state.user.user.user.role,
+  //     date: state.user.user.user.date,
+  //   })
+  // );
   const Router = useRouter();
   let [title, setTitle] = useState("");
   let [description, setDescription] = useState("");
@@ -107,10 +111,6 @@ export default function Page() {
           </button>
         </div>
       )}
-      {/* {id && role !== "instructor" && (
-        {/* <div>
-          <p>只有講師可以發布新課程。</p>
-        </div> */}
       {id && role == "instructor" && (
         <div className="form-group">
           <label for="exampleforTitle">課程標題：</label>

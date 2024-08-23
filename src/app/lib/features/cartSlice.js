@@ -3,9 +3,21 @@ const cartSlice = createSlice({
   name: "cart",
   initialState: [],
   reducers: {
+    // addToCart: (state, action) => {
+    //   state.push(action.payload);
+    //   localStorage.setItem("cart", JSON.stringify(state));
+    // }
     addToCart: (state, action) => {
-      state.push(action.payload);
-      localStorage.setItem("cart", JSON.stringify(state));
+      const courseAlreadyInCart = state.some(
+        (item) => item._id === action.payload._id
+      );
+
+      if (!courseAlreadyInCart) {
+        state.push(action.payload);
+
+        // 更新 localStorage 中的購物車
+        localStorage.setItem("cart", JSON.stringify(state));
+      }
     },
     removeFromCart: (state, action) => {
       const courseId = action.payload;

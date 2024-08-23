@@ -15,6 +15,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // 默認使用 localStorage 作為存儲引擎
 import userReducer from "./features/userSlice";
 import cartReducer from "./features/cartSlice";
+// 要使用redux-persist必須加這些不然會出錯
 import {
   FLUSH,
   REHYDRATE,
