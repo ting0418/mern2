@@ -5,10 +5,15 @@ import Swal from "sweetalert2";
 import { useAppSelector, useAppDispatch } from "@/app/lib/hooks";
 import axios from "axios";
 export default function Page() {
-  const { isLoggedIn, user } = useAppSelector((state) => state.user || {});
+  const { isLoggedIn, user } = useAppSelector((state) => ({
+    isLoggedIn: state.user.isLoggedIn,
+    user: state.user?.user?.user || {},
+  }));
 
-  const { id } = user || {};
+  const { _id: id, role } = user;
+  console.log(isLoggedIn);
 
+  console.log(role);
   // const { isLoggedIn, id, username, email, date, role } = useAppSelector(
   //   (state) => ({
   //     isLoggedIn: state.user.isLoggedIn,
@@ -111,8 +116,9 @@ export default function Page() {
           </button>
         </div>
       )}
+
       {id && role == "instructor" && (
-        <div className="form-group">
+        <div className="form-group container">
           <label for="exampleforTitle">課程標題：</label>
           <input
             name="title"

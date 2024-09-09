@@ -43,7 +43,7 @@ export default function Page() {
       );
       Swal.fire({
         title: "註冊成功",
-        text: "將前往登入頁面",
+        text: "已發驗證信到您的信箱，請確認是否收到",
         icon: "success",
         confirmButtonText: "確定",
       });
@@ -53,6 +53,19 @@ export default function Page() {
     } catch (error) {
       // 在這裡處理錯誤
       console.error("註冊失敗:", error);
+
+      Swal.fire({
+        title: "註冊失敗",
+        text: error.response.data,
+        icon: "error",
+        confirmButtonText: "確定",
+      }).then(() => {
+        // 清空欄位資料
+        setEmail("");
+        setUsername("");
+        setPassword("");
+        setRole("請選擇身分");
+      });
     }
   };
 
@@ -67,6 +80,7 @@ export default function Page() {
           name="username"
           type="text"
           className="form-control"
+          value={username}
           onChange={(e) => {
             setUsername(e.target.value);
           }}
@@ -78,6 +92,7 @@ export default function Page() {
           name="email"
           type="email"
           className="form-control"
+          value={email}
           onChange={(e) => {
             setEmail(e.target.value);
           }}
@@ -88,6 +103,7 @@ export default function Page() {
           id="password"
           name="password"
           className="form-control"
+          value={password}
           type="password"
           onChange={(e) => {
             setPassword(e.target.value);
@@ -99,13 +115,12 @@ export default function Page() {
           name="role"
           id="role"
           className="form-control"
+          value={role}
           onChange={(e) => {
             setRole(e.target.value);
           }}
         >
-          <option selected disabled>
-            請選擇身份
-          </option>
+          <option selected>請選擇身份</option>
           <option value="student" id="student">
             學生
           </option>

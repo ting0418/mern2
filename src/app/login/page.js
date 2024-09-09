@@ -47,8 +47,17 @@ const Login = () => {
         router.push("/");
       });
     } catch (e) {
-      setMessage(e.response.data);
-      console.error("登入失敗:", e.response.data);
+      if (email == "") {
+        Swal.fire({
+          title: "登入失敗",
+          text: "信箱不可為空",
+          icon: "error",
+        });
+      } else {
+        setMessage(e.response.data);
+        console.error("登入失敗:", e.response.data);
+      }
+
       // dispatch(loginFailure(e.response.data || "登入失敗，未提供授權！"));
     }
   };

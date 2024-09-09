@@ -59,6 +59,41 @@ const CartPage = () => {
       });
     }
   };
+  // const handleCheckout = async () => {
+  //   try {
+  //     const token = getCookie("token");
+
+  //     if (!token) {
+  //       console.error("找不到 token");
+  //       return;
+  //     }
+  //     const checkoutData = {
+  //       cart: cart.map((course) => course._id), // 傳送課程 ID 列表到後端
+  //       totalAmount: totalAmount, // 傳送總金額到後端
+  //     };
+
+  //     const response = await axios.post(
+  //       "http://localhost:3005/api/courses/checkout",
+  //       checkoutData,
+  //       {
+  //         headers: {
+  //           Authorization: token,
+  //         },
+  //       }
+  //     );
+
+  //     // 重定向到 LINE Pay URL
+  //     const { redirectUrl } = response.data;
+  //     window.location.href = redirectUrl;
+  //   } catch (e) {
+  //     console.error("結帳失敗:", e.response);
+  //     Swal.fire({
+  //       title: "錯誤",
+  //       text: e.response?.data || "結帳失敗",
+  //       icon: "error",
+  //     });
+  //   }
+  // };
 
   return (
     <div className="container">
